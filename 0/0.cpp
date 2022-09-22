@@ -3,7 +3,7 @@
 #include <opencv2/highgui.hpp>
 int main()
 {
-	cv::Mat image = cv::imread("burt_image.png");
+	cv::Mat image = cv::imread("./burt_apple.png");
 
     cv::imshow("Image",image);
     cv::waitKey();
