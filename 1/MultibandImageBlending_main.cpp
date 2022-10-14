@@ -124,7 +124,7 @@ int main()
     imageApple.convertTo(imageApple,CV_32F,1/255.f);
     imageOrange.convertTo(imageOrange,CV_32F,1/255.f);
     imageMask.convertTo(imageMask,CV_32F,1/255.f);
-    int depth = 10;
+    int depth = 20;
     auto pyrApple = LaplacianPyramid(imageApple,depth);
     auto pyrOrange = LaplacianPyramid(imageOrange,depth);
     auto pyrMask = GaussianPyramid(imageMask,depth);
