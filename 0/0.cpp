@@ -84,18 +84,24 @@ cv::Mat reconstruct( const std::vector<cv::Mat>& pyramid) //& similar to pointer
 
 int main()
 {
-	cv::Mat image = cv::imread("./burt_apple.png");
+	cv::Mat image = cv::imread("./archon.jpg");
     image.convertTo(image,CV_32F,1/255.f);
 
-    auto pyr = LaplacianPyramid(image);
-    for (auto i: pyr)
-    {
-        cv::Mat bright_i = i*10 + 0.5;
-        cv::imshow("Image",bright_i);
-        cv::waitKey();
-    }
+    auto pyr = GaussianPyramid(image,100);
+    // for (auto i: pyr)
+    // {
+    //     cv::Mat bright_i = i;
+    //     cv::imshow("Image",bright_i);
+    //     cv::waitKey();
+    // }
     auto res = reconstruct(pyr);
+    res = res * .01f-0.5;
+
     imshow("reconstructed",res);
     waitKey();
+    imshow("image",image);
+    waitKey();
+
+    
     std::cout<<"OpenCV version : "<<CV_VERSION<<std::endl;
 }
