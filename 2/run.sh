@@ -1,2 +1,2 @@
 source compile.sh
-./binary --verbose
+./binary 1 --verbose

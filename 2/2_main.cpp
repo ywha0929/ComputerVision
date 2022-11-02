@@ -102,7 +102,7 @@ cv::Mat performGaussianFilter(cv::Mat image, int depth =5)
     return reconstruct(pyr)-0.5;
 }
 
-int main()
+int main(int argc, char*argv[])
 {
 	std::vector<cv::Mat> coins;
     for(int i = 0; i< 6;i++)
@@ -140,18 +140,23 @@ int main()
             90 //maxRadius
         );
         // std::cout<<"Check : After HoughCircles"<<std::endl;
-        for( size_t i = 0; i < circles.size(); i++ )
+        std::cout<<"Number of Circles for coin"<<i<<" is : "<<circles.size()<<std::endl;
+        if(argc != 1)
         {
-            Vec3i c = circles[i];
-            Point center = Point(c[0], c[1]);
-            // circle center
-            circle( thisImage, center, 1, Scalar(0,100,100), 3, LINE_AA);
-            // circle outline
-            int radius = c[2];
-            circle( thisImage, center, radius, Scalar(255,0,255), 3, LINE_AA);
+            for( size_t i = 0; i < circles.size(); i++ )
+            {
+                Vec3i c = circles[i];
+                Point center = Point(c[0], c[1]);
+                // circle center
+                circle( thisImage, center, 1, Scalar(0,100,100), 3, LINE_AA);
+                // circle outline
+                int radius = c[2];
+                circle( thisImage, center, radius, Scalar(255,0,255), 3, LINE_AA);
+            }
+            imshow("detected circles", thisImage);
+            waitKey();
         }
-        imshow("detected circles", thisImage);
-        waitKey();
+        
     }
 
 }
